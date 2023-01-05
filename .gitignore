@@ -1,0 +1,11 @@
+node_modules
+__tests__
+.bundle
+android
+ios
+.node-version
+.prettierrc.js
+.ruby-version
+.buckconfig
+.eslintrc.js
+.flowconfig
