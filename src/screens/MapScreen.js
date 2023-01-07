@@ -1,3 +1,10 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable semi */
+/* eslint-disable keyword-spacing */
+/* eslint-disable yoda */
+/* eslint-disable eqeqeq */
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {
     StyleSheet,
@@ -11,9 +18,9 @@ import MapView, {Marker, Circle} from 'react-native-maps';
 
 
 import NavigationService from '../helpers/NavigationService';
-import {extractPostParams}  from "../helpers/store";
+import {extractPostParams}  from '../helpers/store';
 import {fomartCurrOut,valid_coords} from '../helpers/currency';
-import {translate} from "../helpers/i18n";
+import {translate} from '../helpers/i18n';
 
 import CloseButton from '../components/inners/CloseButton';
 import MapCard from '../components/inners/MapCard';
@@ -77,13 +84,13 @@ class MapScreen extends React.Component{
         // console.log(this.listingList);
         if( null != this.listingList ){
             this.listingList.scrollToIndex({
-                index: idx
+                index: idx,
             })
             // this.setState( {mIndex: idx} )
         }
     }
     _renderListings(items, bot){
-        const lWidth = Dimensions.get('window').width/2.2;
+        const lWidth = Dimensions.get('window').width / 2.2;
         return (
             <View style={[styles.listingsWrap,{bottom: bot}]}>
                 <FlatList
@@ -119,8 +126,8 @@ class MapScreen extends React.Component{
             address_lng = parseFloat(address_lng)
             address_lat = parseFloat(address_lat)
 
-            region.latitude= address_lat;
-            region.longitude= address_lng;
+            region.latitude = address_lat;
+            region.longitude = address_lng;
         }
         if( null != items && Array.isArray(items) && items.length > 0 ){
             items.forEach(lpost => {
@@ -130,8 +137,8 @@ class MapScreen extends React.Component{
                         longitude: parseFloat(lpost.longitude),
                     })
                     if( mIndex == idx ){
-                        region.latitude= parseFloat(lpost.latitude);
-                        region.longitude= parseFloat(lpost.longitude);
+                        region.latitude = parseFloat(lpost.latitude);
+                        region.longitude = parseFloat(lpost.longitude);
                     }
                     idx++
                 }
@@ -146,29 +153,29 @@ class MapScreen extends React.Component{
                 {insets => <View style={[styles.container,{paddingLeft: insets.left,paddingRight: insets.right}]}>
                     <View style={[styles.closeButton,{top: insets.top}]}><CloseButton color={apColors.backBtn} style={{width: 50}} onPress={()=>_self.props.navigation.goBack()}/></View>
                     <MapView
-                        style={[styles.map,{backgroundColor: apColors.appBg,}]}
+                        style={[styles.map,{backgroundColor: apColors.appBg}]}
                         region={region}
                         // onPress = {this.onPress}
                         // mapType={Constants.Maps.type}
                         // ref={map => this.map = map}
                     >
-                    { nearby == 'on' && address_lng != '' && address_lat != '' && markers.length > 0 && <Circle 
+                    { nearby == 'on' && address_lng != '' && address_lat != '' && markers.length > 0 && <Circle
 
                         center={{
                             latitude: address_lat,
                             longitude: address_lng,
-                        }} 
-                        radius={parseFloat(distance)*1000}
+                        }}
+                        radius={parseFloat(distance) * 1000}
                         fillColor="rgba(0,122,255,0.2)"
                         strokeColor="rgba(0,0,0,0.2)"
                     />}
                     { markers.map((marker,idx) => {
-                        let mVStyle = [styles.markerView,{backgroundColor: apColors.appBg,}],
+                        let mVStyle = [styles.markerView,{backgroundColor: apColors.appBg}],
                             mTStyle = styles.markerText;
                         if( idx == mIndex ){
                             mVStyle = [mVStyle, {backgroundColor: apColors.appColor}]
                             mTStyle = [mTStyle, {color:'#FFF'}]
-                        } 
+                        }
                         return (
                             <Marker key={marker.ID}
                                 coordinate={{
@@ -201,14 +208,14 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
 }
 
-//export your list as a default export 
+//export your list as a default export
 export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);
 
 
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
+        flex:1,
     },
     closeButton: {
         marginTop: 6,
@@ -234,7 +241,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     markerView: {
-        
+
         paddingVertical: 5,
         paddingHorizontal: 10,
         borderRadius: 3,
