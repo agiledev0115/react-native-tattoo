@@ -1,6 +1,6 @@
 {
-  "name": "CTHDirectory",
-  "version": "0.0.1",
+  "name": "Tattoo",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
