@@ -45,7 +45,8 @@ function ProfileStack ({ navigation, route }){
     }, [navigation, route]);
     return (
         <Stack.Navigator
-            initialRouteName={isLoggedIn? "Profile": 'SignIn'}
+            // initialRouteName={isLoggedIn? "Profile": 'SignIn'}
+            initialRouteName={"Website"}
             screenOptions={ ({navigation, route }) => {
                 return { 
                     gestureEnabled: false,
@@ -58,7 +59,10 @@ function ProfileStack ({ navigation, route }){
                 }
             } }
         >
-            { isLoggedIn ? <>
+            {/* { isLoggedIn ? <> */}
+                <Stack.Screen name="Website" initialParams={{ title: 'Info',url:'https://globaltattoobooking.com/tatuajes/' }} options={({ route }) => ({ title: route.params.title })}>
+                    {props => <WebScreen {...props} apColors={colors}/>}
+                </Stack.Screen>
                 <Stack.Screen name="Profile" options={{ headerShown: false }}>
                     {props => <ProfileScreen {...props} apColors={colors}/>}
                 </Stack.Screen>
@@ -92,7 +96,7 @@ function ProfileStack ({ navigation, route }){
                 </Stack.Screen>
                 
 
-            </> : <>
+            {/* </> : <>
                 <Stack.Screen name="SignIn" options={{ headerShown: false }} initialParams={{ loggedInRoute: 'Profile' }}>
                     {props => <SignInScreen {...props} apColors={colors}/>}
                 </Stack.Screen>
@@ -103,7 +107,7 @@ function ProfileStack ({ navigation, route }){
                     {props => <RegisterScreen {...props} apColors={colors}/>}
                 </Stack.Screen>
 
-            </> }
+            </> } */}
 
 
                 
