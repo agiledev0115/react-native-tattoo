@@ -79,7 +79,9 @@ import org.apache.tools.ant.taskdefs.condition.Os
  */
 
 project.ext.react = [
-    enableHermes: true,  // clean and rebuild if changing
+    enableHermes: false,  // clean and rebuild if changing
+    // hermesCommand: "../../node_modules/hermesengine/%OS-BIN%/hermes",
+    // extraPackagerArgs: ["--sourcemap-output", "$buildDir/intermediates/assets/release/index.android.bundle.map"]
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -217,6 +219,13 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+
+        release {
+            storeFile file('your_key_name.keystore')
+            storePassword 'password123'
+            keyAlias 'your_key_alias'
+            keyPassword 'password123'
+        }
     }
     buildTypes {
         debug {
@@ -225,7 +234,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
