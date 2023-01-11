@@ -5,8 +5,10 @@ import {
 import { 
 	getFocusedRouteNameFromRoute,
 } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-const Stack = createStackNavigator();
+// import { createStackNavigator } from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 import ProfileScreen from '../screens/ProfileScreen';
 
@@ -39,35 +41,37 @@ function ProfileStack ({ navigation, route }){
     const user = useSelector(state => state.user);
     const {isLoggedIn} = user
     const colors = getThemedColors(useColorScheme())
-    React.useLayoutEffect(() => {
-        const routeName = getFocusedRouteNameFromRoute(route) ?? (isLoggedIn? "Profile": 'SignIn');
-        navigation.setOptions({ tabBarVisible: routeName == 'Profile' });
-    }, [navigation, route]);
+    // React.useLayoutEffect(() => {
+    //     const routeName = getFocusedRouteNameFromRoute(route) ?? (isLoggedIn? "Website": 'SignIn');
+    //     navigation.setOptions({ tabBarVisible: routeName == 'Website' });
+    // }, [navigation, route]);
     return (
         <Stack.Navigator
             // initialRouteName={isLoggedIn? "Profile": 'SignIn'}
-            initialRouteName={"Website"}
-            screenOptions={ ({navigation, route }) => {
-                return { 
-                    gestureEnabled: false,
-                    headerLeft: () => {
-                        return <BackButton color={colors.backBtn} onPress={navigation.goBack} style={{marginLeft: 10}}/>;
-                    },
-                    headerStyle: colors.headerNavStyle,
-                    headerTitleStyle: colors.headerTitleStyle,
-                    headerTitleAlign: 'center',
-                }
-            } }
+            // initialRouteName={"Profile"}
+            // screenOptions={ ({navigation, route }) => {
+            //     return { 
+            //         gestureEnabled: false,
+            //         headerLeft: () => {
+            //             return <BackButton color={colors.backBtn} onPress={navigation.goBack} style={{marginLeft: 10}}/>;
+            //         },
+            //         headerStyle: colors.headerNavStyle,
+            //         headerTitleStyle: colors.headerTitleStyle,
+            //         headerTitleAlign: 'center',
+            //     }
+            // } }
+            screenOptions={{headerShown: false}}
         >
             {/* { isLoggedIn ? <> */}
-                <Stack.Screen name="Website" initialParams={{ title: 'Info',url:'https://globaltattoobooking.com/tatuajes/' }} options={({ route }) => ({ title: route.params.title })}>
+                {/* <Stack.Screen name="Website" initialParams={{ title: 'Info',url:'https://globaltattoobooking.com/tatuajes/' }} options={{ headerShown: false }}>
                     {props => <WebScreen {...props} apColors={colors}/>}
-                </Stack.Screen>
-                <Stack.Screen name="Profile" options={{ headerShown: false }}>
+                </Stack.Screen> */}
+                {/* <Stack.Screen name="Profile" options={{ headerShown: false }}>
                     {props => <ProfileScreen {...props} apColors={colors}/>}
-                </Stack.Screen>
+                </Stack.Screen> */}
+                <Stack.Screen name="Website" component={WebScreen} />
 
-                <Stack.Screen name="EditProfile" options={ {title: translate('editprofile','title')} }>
+                {/* <Stack.Screen name="EditProfile" options={ {title: translate('editprofile','title')} }>
                     {props => <EditProfileScreen {...props} apColors={colors}/>}
                 </Stack.Screen>
 
@@ -93,7 +97,7 @@ function ProfileStack ({ navigation, route }){
 
                 <Stack.Screen name="ProfileWeb" initialParams={{ title: 'Info',url:'' }} options={({ route }) => ({ title: route.params.title })}>
                     {props => <WebScreen {...props} apColors={colors}/>}
-                </Stack.Screen>
+                </Stack.Screen> */}
                 
 
             {/* </> : <>

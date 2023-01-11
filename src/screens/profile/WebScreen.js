@@ -9,14 +9,15 @@ import {
 
 import { WebView } from 'react-native-webview';
 
-export default function WebScreen(props) {
+export default function WebScreen() {
     return <WebView 
-    	source={{ uri: props.route.params?.url ?? '' }} 
-    	style={{
-    		flex:1,
-    		width:'100%',
-    		backgroundColor: props.apColors.secondBg,
-    	}}
+    	// source={{ uri: props.route.params?.url ?? '' }} 
+    	// style={{
+    	// 	flex:1,
+    	// 	width:'100%',
+    	// 	backgroundColor: props.apColors.secondBg,
+    	// }}
+        source={{ uri: 'https://globaltattoobooking.com/tatuajes/' }}
     />;
 }
 

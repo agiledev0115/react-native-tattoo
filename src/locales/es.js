@@ -224,7 +224,7 @@ export default {
     explore: "Explorar",
     mybookings: "Mis reservas",
     bookmarksTab: "Marcadores",
-    profileMenu: "Perfil",
+    profileMenu: "Tatuaje",
     locrequest: {
         title: "Global Tattoo Booking",
         message: "GTB desea acceder a su ubicación",
